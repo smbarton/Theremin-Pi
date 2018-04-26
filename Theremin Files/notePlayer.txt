@@ -1,0 +1,16 @@
+live_loop :listen do
+  set_sched_ahead_time! 0.1
+  
+  message_pitch = sync "/play_this"
+  note = message_pitch[:args][0]
+  
+  message_volume = sync "/this_loud"
+  volume = message_volume[:args][0]
+  
+  use_synth :supersaw
+  
+  play note, amp: volume, attack: 0.5, release: 0.5
+  
+  #play 65
+  sleep 0.2
+end
